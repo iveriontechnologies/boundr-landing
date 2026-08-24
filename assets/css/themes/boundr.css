@@ -1,0 +1,178 @@
+/* ==========================================================================
+   kit/themes/boundr.css — the Boundr direction.
+
+   Load order: fonts.css -> themes/boundr-fonts.css -> tokens.css ->
+               THIS FILE -> base.css -> components.css -> sections.css
+
+   Token reassignments only. No selector here is anything but :root, and no
+   declaration is anything but a custom property — if this file ever needs a
+   rule to make a page look right, that is a leak in the token system and the
+   token system is what should change.
+
+   Extracted from the Claude Design source in design-source/boundr/. Four
+   colours were changed on the way in because they failed WCAG 2.1 AA; each is
+   marked FIXED with the measurement. Everything else is the source value.
+   ========================================================================== */
+
+:root {
+
+  /* ------------------------------------------------------------- SURFACES */
+  --color-surface:            #FBF7F0;  /* warm cream — the page ground */
+  --color-surface-raised:     #FFFFFF;  /* cards, the dashboard, the nav */
+  --color-surface-sunken:     #F6F2EA;  /* the demo band, one step down */
+  --color-surface-muted:      #F2EEE6;  /* disabled fills, zebra rows */
+  --color-surface-tint:       #F5F4F7;  /* cool tint for scope rows */
+  --color-surface-inverse:    #171429;  /* footer, dark bands */
+  --color-surface-accent:     #E9E4F7;  /* violet wash behind avatars, chips */
+
+  /* ----------------------------------------------------------------- TEXT */
+  --color-text:               #171429;  /* 17.97:1 on white */
+  --color-text-secondary:     #5B5872;  /* body copy — 6.81:1 white, 6.38:1 cream */
+  --color-text-strong:        #3F3C55;  /* denser than secondary — 10.56:1 */
+
+  /* FIXED. Source #8B879E is 3.47:1 on white and 3.25:1 on cream — a fail on
+     both, across 41 uses (table headers, dates, captions). Same hue, walked
+     down in lightness only until it cleared every ground the theme actually
+     paints, the sunken band included: 5.05:1 white, 4.73:1 cream, 4.52:1 on
+     the sunken #F6F2EA. Solving for two of the three left the demo caption at
+     4.31 — a colour has to clear the surface it is used on, not the surface it
+     was designed against. */
+  --color-text-muted:         #706C85;
+
+  --color-text-disabled:      #8B879E;  /* the old muted value; 1.4.3 exempts disabled */
+  --color-text-inverse:       #FFFFFF;
+  --color-text-on-accent:     #FFFFFF;  /* 10.28:1 on the violet */
+
+  /* --------------------------------------------------------------- ACCENT */
+  --color-accent:             #3A24AE;  /* Boundr violet — 10.28:1 on white */
+  --color-accent-hover:       #2E1B8A;  /* button hover — 12.81:1 */
+  --color-accent-contrast:    #FFFFFF;
+
+  /* FIXED. The violet is far too dark to read on the ink footer. Lightened on
+     the same hue until 4.53:1 on #171429. */
+  --color-accent-on-dark:     #816FE1;
+
+  /* The warm secondary. Decorative at full strength — the logo dot, the source
+     pips, the radial glow — where contrast rules do not apply because it
+     carries no text and no meaning on its own. */
+  --color-accent-warm:        #EE7723;
+  --color-accent-amber:       #F5A623;
+
+  /* FIXED. The source sets a:hover to #EE7723, which is 2.88:1 on white. That
+     is a text colour and it fails. Darkened on the same hue to 4.81:1 white /
+     4.50:1 cream. The undarkened orange survives above for decoration. */
+  --color-link-hover:         #B9550E;
+
+  /* --------------------------------------------------------------- STATES
+     The three the product actually needs: agreed, waiting, flagged. */
+
+  /* FIXED. Source #12876A is 4.47:1 on white — 0.03 short, which is still
+     short. Nudged one step darker: 4.82:1 white, 4.51:1 cream. */
+  --color-positive:           #118166;
+  --color-positive-text:      #0F6E56;  /* on the tint below — 5.72:1 */
+  --color-positive-surface:   #EEF8F4;
+  --color-positive-border:    #CFEADF;
+
+  --color-flagged:            #7A5100;  /* on the tint below — 6.51:1 */
+  --color-flagged-surface:    #FEF6E7;
+  --color-flagged-border:     #F6E7C9;
+
+  --color-danger:             #B9550E;  /* form errors — the darkened warm, not red */
+
+  /* ------------------------------------------------------------- BORDERS */
+  --color-border:             #EFE9DE;  /* decorative hairline — 1.4.11 exempt */
+  --color-border-subtle:      #F2EEE6;
+  --color-border-strong:      #171429;
+
+  /* Interactive outlines need 3:1. #8B879E fails as text and passes as a
+     border — 3.25:1 on cream — so the colour stays in the palette, demoted. */
+  --color-border-control:     #8B879E;
+
+  /* FIXED. The secondary button's #D7CFE9 outline is 1.50:1, and a button
+     edge is exactly what 1.4.11 is about. Darkened to 3.00:1 on cream. */
+  --color-border-accent:      #9A85C7;
+
+  --color-divider:            #E7E2D9;
+  --color-scrim:              rgba(23, 20, 41, .55);
+
+  /* Alpha ramp over the ink surfaces, matching the source's rgba(255,255,255,x) */
+  --color-inverse-a86:        rgba(255, 255, 255, .86);
+  --color-inverse-a80:        rgba(255, 255, 255, .80);
+  --color-inverse-a75:        rgba(255, 255, 255, .75);
+  --color-inverse-a72:        rgba(255, 255, 255, .72);
+  --color-inverse-a62:        rgba(255, 255, 255, .62);
+  --color-inverse-a50:        rgba(255, 255, 255, .50);
+  --color-inverse-a32:        rgba(255, 255, 255, .32);
+  --color-inverse-a28:        rgba(255, 255, 255, .28);
+  --color-inverse-a14:        rgba(255, 255, 255, .14);
+  --color-inverse-a10:        rgba(255, 255, 255, .10);
+  --color-inverse-a08:        rgba(255, 255, 255, .08);
+  --color-inverse-a05:        rgba(255, 255, 255, .05);
+
+  /* --------------------------------------------------------- TYPOGRAPHY
+     Poppins for anything that is a heading or a button — geometric, and the
+     brief asks for a modern SaaS register. Plus Jakarta Sans for reading.
+     IBM Plex Mono for figures, because hours and dollar amounts appear in
+     columns throughout and proportional digits will not line up. */
+  --font-display: 'Poppins', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-body:    'Plus Jakarta Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* The display steps in tokens.css are sized for Treadwell's condensed
+     grotesque. Poppins is geometric and much wider at the same pixel size, so
+     the large end of the scale has to come down or the hero wraps to four
+     lines on a laptop. Body sizes are unchanged. */
+  --text-display-hero:    clamp(38px, 5.2vw, 62px);
+  --text-display-section: clamp(30px, 3.6vw, 44px);
+  --leading-tight:        1.04;   /* .92 is a condensed-face value */
+
+  /* And condensed faces want positive tracking where a geometric one wants
+     negative. Both of these are positive in the base. */
+  --tracking-tight:       -.02em;
+  --tracking-hero-tight:  -.03em;
+
+  /* ------------------------------------------------------------- RADIUS
+     Rounder than warm-retail, which is square by design. The source runs
+     9-11px on controls, 14-22px on surfaces. */
+  --radius-none:    0;
+  --radius-sm:      2px;
+  --radius-control: 11px;
+  --radius-chip:    9px;
+  --radius-media:   14px;
+  --radius-card:    20px;
+  --radius-panel:   22px;
+  --radius-pill:    20px;
+  --radius-full:    50%;
+
+  /* -------------------------------------------------------------- LAYOUT
+     A narrower measure than warm-retail's 1440px, and a flat gutter rather
+     than one that steps at each breakpoint — the source uses 24px at every
+     width and the design is built around that constant. */
+  --container-max: 1200px;
+  --pad:           24px;
+  --nav-height:    72px;
+  --section-pad:   clamp(64px, 7vw, 104px);
+
+  /* -------------------------------------------------------------- SHADOW
+     Tinted with the ink rather than pure black, so elevation stays warm
+     instead of turning grey against the cream. */
+  --shadow-sm:      0 6px 16px rgba(23, 20, 41, .08);
+  --shadow-md:      0 12px 28px rgba(23, 20, 41, .16);
+  --shadow-lg:      0 24px 56px rgba(23, 20, 41, .10);
+  --shadow-accent:  0 10px 24px rgba(58, 36, 174, .26);
+  --shadow-accent-hover: 0 16px 32px rgba(46, 27, 138, .34);
+  --shadow-hero:    0 30px 70px rgba(23, 20, 41, .22);
+  --shadow-pip:     0 0 0 6px rgba(245, 166, 35, .20), 0 0 18px rgba(245, 166, 35, .60);
+  --shadow-pip-sm:  0 0 0 5px rgba(245, 166, 35, .20);
+
+  /* ---------------------------------------------------------- DECORATION
+     The radial light on the violet hero card, and the rings drawn over it.
+     None of these carry text or meaning, so no contrast floor applies. */
+  --color-glow-warm:         rgba(238, 119, 35, .55);
+  --color-glow-violet:       rgba(124,  96, 232, .50);
+  --color-ring-amber:        rgba(245, 166,  35, .60);
+  --color-ring-amber-strong: rgba(245, 166,  35, .85);
+
+  /* The nav is translucent over the cream and blurs what scrolls behind it. */
+  --color-nav-bg:  rgba(255, 255, 255, .86);
+}

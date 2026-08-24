@@ -1,0 +1,140 @@
+Boundr Landing — LICENCE
+Version 1.0.0
+Copyright © 2026 Iverion Technologies.
+
+================================================================================
+IN ONE PARAGRAPH
+================================================================================
+
+This template is free. Build as many websites with it as you like, for yourself
+or for paying clients, commercial or not. Change anything. Charge whatever you
+want for the work you do with it. You do not owe attribution and you do not owe
+anything else. The one thing you may not do is sell or give away the template
+itself.
+
+You did not buy this and there is nothing to buy. It is a free sample of how
+Iverion Technologies builds templates.
+
+================================================================================
+WHAT YOU MAY DO
+================================================================================
+
+  - Build UNLIMITED websites with it, personal or commercial.
+  - Build sites for clients or an employer, and charge them whatever you like.
+  - Use it inside an agency or company, across your whole team.
+  - Modify anything: colours, fonts, layout, code, content, structure.
+  - Put those sites on live domains and keep them there indefinitely.
+  - Hand the finished site files to the client who paid you for that site.
+  - Keep using it forever. There is no renewal and nothing expires.
+  - Credit is welcome and never required.
+
+================================================================================
+WHAT YOU MAY NOT DO
+================================================================================
+
+  1. Resell or redistribute the template itself, as delivered or modified,
+     free or paid. This includes:
+       - listing it on ThemeForest, Creative Market, Gumroad, Etsy or similar
+       - re-uploading it to a file-sharing site, a Discord, or a template
+         directory as your own download
+       - bundling it into a "1000 templates" pack
+       - rebuilding it under a new name from these files
+
+     "Free" does not mean "yours to hand out". Point people at
+     https://iverion.gumroad.com/l/boundr instead — it costs them nothing either.
+
+  2. Include it inside a product other people buy — a website builder, a SaaS
+     platform, a theme marketplace listing of your own, a paid course's
+     downloadable materials. Ask first: iveriontechnologies@gmail.com. This is usually a
+     yes, on separate terms.
+
+  3. Sub-license it, or claim to grant anyone else rights to it.
+
+  4. Claim authorship of the template's design or code.
+
+  5. Use it for anything illegal, or for material that is hateful, harassing,
+     or sexually exploitative of minors.
+
+Publishing a site you built with it is not redistribution. Putting the source
+of that site on a public GitHub repository is not redistribution either — that
+is your site. Uploading the unmodified template as a download is.
+
+================================================================================
+THE FONTS
+================================================================================
+
+Boundr Landing ships no photographs. The three typefaces come from Google
+Fonts and are covered by the SIL Open Font License 1.1, not by this licence —
+the full text travels with them in assets/fonts/licences/. See CREDITS.md.
+
+The OFL permits commercial use and self-hosting, which is how they are used
+here. Its one restriction that matters to you: you may not sell the font files
+on their own.
+
+================================================================================
+WHAT YOU GET, AND WHAT YOU DON'T
+================================================================================
+
+  INCLUDED
+    - The template as delivered.
+    - Answers to questions covered by CUSTOMISATION.md, when time allows.
+
+  NOT INCLUDED
+    - Custom development, design work, or content writing.
+    - Support for third-party services: hosts, form backends, analytics.
+    - Any guarantee of future updates.
+    - A support commitment. This is a free template; paid templates from
+      Iverion Technologies come with one.
+
+================================================================================
+NO WARRANTY
+================================================================================
+
+This template is provided "as is", without warranty of any kind, express or
+implied, including but not limited to warranties of merchantability, fitness
+for a particular purpose and non-infringement.
+
+Iverion Technologies is not liable for any claim, damages or other liability arising from
+the use of this template — including lost sales, lost data or downtime.
+
+You are responsible for testing your own site before you launch it, and for
+whatever you publish on it.
+
+================================================================================
+ABOUT THE DEMO CONTENT
+================================================================================
+
+Boundr is not a real product. The company, the people quoted, the pricing and
+the figures in the dashboard are all invented for the demo, and every one of
+them is placeholder text you are expected to replace.
+
+Two of them matter more than the rest, so they are worth saying plainly:
+
+  - The three testimonials are fictional. Shipping invented customer quotes on
+    a live site is a false claim about real people who do not exist. Replace
+    them with real ones or delete the section.
+  - The founder story is fictional. Same reasoning.
+
+CUSTOMISATION.md says where both live.
+
+================================================================================
+IF YOU BREAK THIS LICENCE
+================================================================================
+
+It terminates automatically and you must stop using the template and delete
+your copies. Sites already published under a valid licence before termination
+may stay up.
+
+================================================================================
+NOTES
+================================================================================
+
+This licence is written in plain English deliberately — a licence nobody can
+read protects nobody. It is not legal advice, and it has not been reviewed by a
+lawyer. If a great deal of money depends on the wording, have one look at it.
+
+Questions about what you are allowed to do? Just ask: iveriontechnologies@gmail.com.
+The answer is usually yes.
+
+--------------------------------------------------------------------------------
+Boundr Landing v1.0.0 — https://iverion.gumroad.com/l/boundr

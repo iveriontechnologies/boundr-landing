@@ -1,0 +1,608 @@
+/* ==========================================================================
+   kit/tokens.css — every design decision in the kit, in one place.
+   --------------------------------------------------------------------------
+   This is the ONLY file in the kit allowed to contain a literal colour, font
+   size, spacing value, radius, shadow or border width. Everything else refers
+   to these custom properties.
+
+   To re-skin a template, change values here (or load a file from kit/themes/
+   after this one). Do not change names — the sections depend on them.
+
+   Layout is MOBILE-FIRST: the values in :root are what a 320px phone gets.
+   Each min-width block below layers on the wider layout.
+   ========================================================================== */
+
+:root {
+
+  /* ---------------------------------------------------------------- COLOUR
+     Named by role, not by appearance, so a theme can invert them safely. */
+
+  /* Surfaces */
+  --color-surface:            #F4F1EA;  /* page background — warm bone */
+  --color-surface-raised:     #FFFFFF;  /* cards, inputs, menus */
+  --color-surface-sunken:     #E8E3D9;  /* image wells, hover fills */
+  --color-surface-muted:      #F0EDE6;  /* disabled control background */
+  --color-surface-tint:       #FCFBF8;  /* zebra stripe — barely off white */
+  --color-surface-inverse:    #14110F;  /* dark bands, header on dark pages */
+
+  /* Text */
+  --color-text:               #14110F;  /* default body + headings */
+  --color-text-secondary:     #3A342E;  /* long-form paragraphs, list items */
+  --color-text-muted:         #6E675E;  /* eyebrows, meta, counts, captions */
+  --color-text-disabled:      #B5AEA3;  /* out-of-stock sizes */
+  --color-text-inverse:       #F4F1EA;  /* text on --color-surface-inverse */
+  --color-text-on-accent:     #FFFFFF;  /* text on --color-accent */
+
+  /* Brand
+     Two embers, because no single one clears WCAG AA against both the bone
+     page and the ink bands. --color-accent is the fill and the text colour on
+     light; --color-accent-on-dark is the same hue lifted for dark surfaces.
+     Contrast: accent 4.53:1 on bone, white 5.10:1 on accent,
+               accent-on-dark 4.54:1 on ink. */
+  /* The one non-ember signal colour: "true to size", in-stock, confirmed.
+     6.21:1 on --color-surface-raised and 5.50:1 on --color-surface, so it
+     clears AA as text and 1.4.11 as a border. All three themes keep a white
+     raised surface, so it holds under each of them without an override. */
+  --color-positive:           #3A6B4A;
+  --color-positive-surface:   #EDF3EE;  /* tinted ground behind positive text */
+  --color-positive-border:    #CBDDD1;  /* hairline around that ground */
+
+  /* "Needs attention", not "error". A product that flags things has to
+     distinguish the two: red says you did something wrong, amber says there is
+     a decision waiting. Alarm-red for a routine flag trains people to ignore
+     real errors, and reads as accusatory in a product whose whole job is to
+     stay non-confrontational.
+
+     Amber on white is the classic contrast failure, so the readable value is
+     the dark one and the amber is the ground beneath it — 6.5:1, not the 2:1
+     you get from putting mid-amber text on white. */
+  --color-flagged:            #7A5100;
+  --color-flagged-surface:    #FEF6E7;
+  --color-flagged-border:     #F6E7C9;
+
+  --color-accent:             #C1441F;  /* Treadwell ember — the one hot colour */
+  --color-accent-on-dark:     #DA4D22;  /* ember for text on --color-surface-inverse */
+  --color-accent-contrast:    #FFFFFF;
+
+  /* Added for boundr, defaulted here so the base file owns every name a
+     stylesheet may reference. Warm-retail has one hot colour and no secondary,
+     so the warm/amber pair simply repeats the accent rather than introducing a
+     colour nobody designed. */
+  --color-accent-hover:       #A63A1A;  /* pressed / hovered primary */
+  --color-accent-warm:        var(--color-accent);
+  --color-accent-amber:       var(--color-accent);
+  --color-link-hover:         var(--color-accent);
+  --color-surface-accent:     #F7E9E3;  /* tinted ground behind accent glyphs */
+  --color-text-strong:        var(--color-text-secondary);  /* denser body tone */
+  --color-positive-text:      var(--color-positive);        /* on --color-positive-surface */
+
+  /* Decorative light, for use over a saturated accent panel only. Warm-retail
+     has no such panel, so these repeat the accent at low alpha rather than
+     introduce a second hue. */
+  --color-glow-warm:          rgba(193, 68, 31, .45);
+  --color-glow-violet:        rgba(193, 68, 31, .28);
+  --color-ring-amber:         var(--color-inverse-a28);
+  --color-ring-amber-strong:  var(--color-inverse-a50);
+
+  /* Lines */
+  --color-border:             #DDD8CE;  /* decorative hairline — cards, rules */
+  --color-border-control:     #8E8779;  /* interactive controls; 3.56:1 on white */
+  --color-border-accent:      #8E8779;  /* accent-tinted control outline; = control unless a theme tints it */
+  --color-border-strong:      #14110F;  /* emphasised / selected outline */
+  --color-border-subtle:      #E4DFD5;  /* disabled control outline */
+  --color-divider:            #C9C3B7;  /* nav separators, sheet handle */
+
+  /* State */
+  --color-danger:             #C1441F;  /* form errors — intentionally = accent */
+  --color-scrim:              rgba(20, 17, 15, .55);  /* modal / drawer backdrop */
+
+  /* Translucent inks, for use over --color-surface-inverse only */
+  --color-inverse-a86:        rgba(244, 241, 234, .86);
+  --color-inverse-a80:        rgba(244, 241, 234, .80);
+  --color-inverse-a75:        rgba(244, 241, 234, .75);
+  --color-inverse-a72:        rgba(244, 241, 234, .72);
+  --color-inverse-a62:        rgba(244, 241, 234, .62);
+  --color-inverse-a50:        rgba(244, 241, 234, .50);
+  --color-inverse-a32:        rgba(244, 241, 234, .32);
+  --color-inverse-a28:        rgba(244, 241, 234, .28);
+  --color-inverse-a14:        rgba(244, 241, 234, .14);
+  --color-inverse-a10:        rgba(244, 241, 234, .10);
+  --color-inverse-a08:        rgba(244, 241, 234, .08);
+  --color-inverse-a05:        rgba(244, 241, 234, .05);
+
+  /* Composite backgrounds */
+  --gradient-hero:      linear-gradient(90deg, rgba(20,17,15,.72) 0%, rgba(20,17,15,.34) 46%, rgba(20,17,15,0) 74%);
+  --gradient-tile:      linear-gradient(0deg,  rgba(20,17,15,.68) 0%, rgba(20,17,15,.12) 55%, rgba(20,17,15,0) 100%);
+  --gradient-subhero:   linear-gradient(0deg,  rgba(20,17,15,.70) 0%, rgba(20,17,15,.10) 70%);
+  --gradient-panel:     linear-gradient(0deg,  rgba(20,17,15,.76) 0%, rgba(20,17,15,.18) 65%);
+  --pattern-hatch:      repeating-linear-gradient(135deg, var(--color-inverse-a05) 0 10px, rgba(244,241,234,0) 10px 22px);
+  /* Fine diagonal sheen laid over a solid colour swatch so flat fills read
+     as material rather than as a block of colour. */
+  --pattern-sheen:      repeating-linear-gradient(135deg, rgba(255,255,255,.14) 0 5px, rgba(255,255,255,0) 5px 11px);
+
+
+  /* ------------------------------------------------------------ TYPOGRAPHY
+     Three families, three jobs. Display is condensed and shouty, body is
+     Barlow, and mono carries every uppercase label in the design. */
+
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body:    'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Label scale — mono, uppercase, letter-spaced. Small on purpose. */
+  --text-label-2xs:  9px;
+  --text-label-xs:   9.5px;
+  --text-label-sm:   10px;
+  --text-label-md:   10.5px;
+  --text-label-lg:   11px;
+
+  /* Body scale */
+  --text-body-xs:    13px;
+  --text-body-sm:    14px;
+  --text-body-md:    14.5px;
+  --text-body-base:  15px;
+  --text-body-lg:    16px;
+  --text-body-xl:    17px;
+  --text-body-2xl:   18px;
+  --text-body-3xl:   20px;
+
+  /* Display scale — condensed headings */
+  --text-display-2xs: 12px;
+  --text-display-xs:  14px;
+  --text-display-sm:  17px;
+  --text-display-md:  19px;
+  --text-display-lg:  21px;
+  --text-display-xl:  22px;
+  --text-display-2xl: 23px;
+  --text-display-3xl: 26px;
+  --text-display-4xl: 27px;
+  --text-display-5xl: 30px;
+  --text-display-6xl: 38px;
+  --text-display-7xl: 40px;
+  --text-display-hero:    clamp(56px, 7vw, 104px);
+  --text-display-page:    clamp(44px, 5vw, 68px);
+  --text-display-band:    clamp(40px, 4.6vw, 66px);
+
+
+  /* Display sizes used by a single component each. Themes retune these. */
+  --text-display-8xl: 46px;   /* product title */
+  --text-display-9xl: 64px;   /* review score */
+  --text-heading-lg:  34px;   /* section h2 on about / checkout panels */
+  --text-heading-md:  32px;   /* cart total */
+  --text-heading-sm:  28px;   /* pillar and name-candidate headings */
+  --text-body-sm-alt: 15.5px; /* pillar body, auth benefit list */
+  --text-fineprint:   12.5px; /* cart tax note */
+
+  /* Fluid display sizes. Each is one component's headline. */
+  --text-fluid-subhero:  clamp(46px, 6vw, 86px);
+  --text-fluid-account:  clamp(40px, 4.6vw, 62px);
+  --text-fluid-mark:     clamp(38px, 5vw, 72px);
+  --text-fluid-404:      clamp(34px, 4.4vw, 60px);
+  --text-fluid-authhead: clamp(34px, 3.6vw, 52px);
+  --text-fluid-ctaband:  clamp(32px, 3.4vw, 48px);
+  --text-fluid-news:     clamp(32px, 3.2vw, 46px);
+  --text-fluid-numeral:  clamp(120px, 20vw, 300px);
+
+  --leading-tight:   .92;
+  --leading-numeral: .82;
+  --leading-subhero: .95;
+  --leading-page:    .98;
+  --leading-mega:    1.05;
+  --leading-hero-p:  1.45;
+  --leading-auth:    1.55;
+  --leading-prose:   1.65;
+  --leading-story:   1.7;
+  --leading-snug:    1;
+  --leading-heading: 1.1;
+  --leading-body:    1.5;
+  --leading-relaxed: 1.6;
+
+  /* Letter-spacing — the mono labels carry most of the brand character */
+  --tracking-logo:    -.04em;
+  --tracking-tight:   .01em;
+  --tracking-normal:  .02em;
+  --tracking-wide:    .03em;
+  --tracking-nav:     .07em;
+  --tracking-label:   .12em;
+  --tracking-label-lg:.14em;
+  --tracking-eyebrow: .16em;
+  --tracking-hero:    .20em;
+  --tracking-hero-tight: .005em;
+  --tracking-mono:    -.06em;   /* monogram tiles */
+  --tracking-numeral: -.02em;   /* the 404 numeral */
+  --tracking-snug:    .04em;
+  --tracking-tab:     .05em;
+  --tracking-mark:    .06em;
+  --tracking-caption: .08em;
+  --tracking-meta:    .10em;
+  --tracking-legend:  .15em;
+  --tracking-cta:     .17em;
+  --tracking-lockup:  .24em;
+  --tracking-lockup-word: .13em;
+  --tracking-eyebrow-lg: .18em;
+
+
+  /* --------------------------------------------------------------- SPACING
+     4px base. Named by step, used everywhere. */
+
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-9:  36px;
+  --space-10: 40px;
+  --space-11: 44px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-18: 72px;
+  --space-21: 84px;
+  --space-24: 96px;
+  /* Sub-grid optical values. Deliberately off the 4px scale — these are
+     nudges, not layout. */
+  --space-px3: 3px;
+  --space-px5: 5px;
+  --space-px6: 6px;
+  --space-px7: 7px;
+  --space-26:  104px;
+
+
+  /* ------------------------------------------------------- BORDER / RADIUS
+     Treadwell is a square design. Radius is used only for pills and dots. */
+
+  --border-width:      1px;
+  --border-width-thick:1.5px;
+  --border-width-icon: 1.6px;
+  --border-width-glyph:1.7px;
+
+  --radius-none: 0;
+  --radius-pill: 9px;
+  --radius-sm:   2px;
+  --radius-full: 50%;
+  --radius-bag: 6px 6px 0 0;   /* the bag glyph's handle */
+  --radius-control: var(--radius-none);  /* buttons, inputs, cards */
+  --radius-media:   var(--radius-none);  /* image wells, tiles */
+
+  /* Three more steps, added for boundr. Warm-retail is square, so they all
+     resolve to none here — but the names have to live in the base file, or a
+     stylesheet using --radius-card would render unstyled with no theme loaded.
+     A theme reassigns values; it must never be the only place a token exists. */
+  --radius-chip:    var(--radius-none);  /* toggles, pills, small controls */
+  --radius-card:    var(--radius-none);  /* content cards */
+  --radius-panel:   var(--radius-none);  /* the largest surfaces */
+
+  --shadow-menu:  0 18px 34px -24px rgba(20, 17, 15, .40);
+  --shadow-mega:  0 18px 34px -24px rgba(20, 17, 15, .35);
+
+  /* An elevation scale, added for boundr. Warm-retail is a flat, hairline
+     design and deliberately uses none of them, so they resolve to `none` here
+     rather than to invented values nothing has been designed against. */
+  --shadow-sm:           none;
+  --shadow-md:           none;
+  --shadow-lg:           none;
+  --shadow-accent:       none;   /* lift under a primary button */
+  --shadow-accent-hover: none;
+  --shadow-pip:          none;   /* halo around a decorative status dot */
+  --shadow-pip-sm:       none;
+
+
+  /* ---------------------------------------------------------------- MOTION */
+
+  --duration-fast:   .2s;
+  --duration-base:   .22s;
+  --ease-out:        ease-out;
+  --ease-standard:   ease;
+  --toast-dwell:     3200ms;   /* read by JS via getComputedStyle */
+
+
+  /* ------------------------------------------------------------- CONTAINER */
+
+  --container-max: 1440px;
+  --grid-cols:     4;          /* store grid columns at desktop (2–4) */
+
+
+  /* ------------------------------------------------------- COMPONENT SIZES
+     Fixed geometry that a theme might reasonably want to change. Purely
+     intrinsic dimensions (the 11x8px bag-glyph handle, an SVG viewBox) stay
+     as literals in sections.css — see kit/TOKENS.md, "What is not tokenised". */
+
+  --size-icon:        26px;   /* header icon hit area */
+  --size-icon-glyph:  36px;   /* footer social square */
+  --size-swatch:      74px;   /* PDP colour swatch */
+  --size-swatch-dot:  13px;   /* card colour dot */
+  --size-check:       15px;   /* checkbox box */
+  --size-control:     38px;   /* arrow / close button */
+  --size-search:      210px;  /* header search field */
+  --size-header:      76px;
+  --size-header-tight:58px;   /* header height once scrolled */
+  --size-meter:       7px;    /* rating bar track height */
+  --col-star:         24px;   /* rating row: star label column */
+  --col-count:        34px;   /* rating row: count column */
+
+
+  /* ==================================================================
+     LAYOUT TOKENS — mobile first (320px and up).
+     These values are the ≤860px layout. Wider layouts override below.
+     ================================================================== */
+
+  --pad:          18px;
+  --headgap:      8px;
+  --bargap:       10px;
+  --bandpad:      56px;
+
+  /* Header chrome. These shrink the masthead enough to clear 320px, which
+     is narrower than the source design was ever laid out for. */
+  --logo-word:    clamp(16px, 4.6vw, 23px);
+  --logo-gap:     var(--space-2);
+  --actions-gap:  var(--space-3);
+  --burger-size:  36px;
+
+  /* Grid templates */
+  --mega:     minmax(0, 1fr);
+  --two:      minmax(0, 1fr);
+  --three:    minmax(0, 1fr);
+  --four:     repeat(2, minmax(0, 1fr));
+  --five:     repeat(3, minmax(0, 1fr));
+  --pdp:      minmax(0, 1fr);
+  --plp:      minmax(0, 1fr);
+  --pgrid:    repeat(2, minmax(0, 1fr));
+  --cart:     minmax(0, 1fr);
+  --cartrow:  minmax(0, 1fr);
+  --acct:     minmax(0, 1fr);
+  --wish:     92px minmax(0, 1fr);
+  --wishspan: 1 / -1;
+  --auth:     minmax(0, 1fr);
+  --foot:     minmax(0, 1fr);
+  --news:     minmax(0, 1fr);
+
+  /* Visibility switches */
+  --nav:         none;
+  --search:      none;
+  --burger:      flex;
+  --aside:       none;
+  --pdpbar:      block;
+  --loginbtn:    none;
+  --profileicon: flex;
+  --authpanel:   none;
+  --barextra:    none;
+  --rowarrows:   none;
+  --cartheader:  none;
+  --celllabel:   inline;
+
+  /* Behaviour */
+  --sticky:      static;
+  --acctnavdir:  row;
+  --cellalign:   left;
+
+  /* Sizing */
+  --heroh:       auto;
+  --herominh:    520px;
+  --heropadtop:  120px;
+  --subheroh:    auto;
+  --subherominh: 360px;
+  --cardw:       250px;
+  --authpad:     32px 22px;
+  --authborder:  var(--border-width) solid var(--color-border);
+  --barsafe:     84px;         /* room for the sticky mobile PDP bar */
+
+  /* Added for boundr. Declared here rather than in the theme because a
+     stylesheet must never depend on a theme being loaded to have a value —
+     mobile-first, so the nav starts collapsed and the hero starts stacked. */
+  --nav-links:   none;                    /* desktop link row */
+  --nav-burger:  flex;                    /* drawer trigger */
+  --nav-gap:     var(--space-3);
+  --logo-size:   30px;
+  --nav-height:  var(--size-header);
+  --section-pad: var(--space-21);
+  --hero-cols:   minmax(0, 1fr);
+  --measure-hero: 560px;
+  --color-nav-bg: var(--color-surface-raised);
+  --radius-hero:  var(--radius-panel);
+  --shadow-hero:  var(--shadow-lg);
+  --text-display-section: var(--text-display-7xl);
+
+  /* The hero card's two stacked panels. Mobile: the message sits full width
+     and the flag sits below it, joined by the connector. On a wide card the
+     two overlap instead, which is where the inset and the negative offset
+     come in — and the connector disappears because there is nothing to join. */
+  --msg-width:      100%;
+  --msg-inset:      0;
+  --msg-pad-bottom: var(--space-4);
+  --flag-width:   100%;
+  --flag-offset:  0;
+  --connector:    flex;
+  --measure-msg:  400px;
+
+  /* The wide cell on the feature grid. One column on mobile, so nothing to
+     span. */
+  --feature-span: auto;
+
+  /* The pricing grid. 0 keeps the plans in source order, which puts the
+     featured one first where they stack. */
+  --plan-order: 0;
+
+  /* Shown while the request table is still wider than its box. */
+  --swipe: block;
+
+  /* How far a progress meter is filled. Set per element; 0% is the only
+     honest default for a bar with no value attached to it. */
+  --fill: 0%;
+
+  /* Size guide, fit-by-model rows. Mobile: name and verdict share a line and
+     the width list drops beneath them both. */
+  --fitrow:         minmax(0, 1fr) auto;
+  --fitrow-widths:  1 / -1;
+
+  /* Legal documents and the FAQ. Mobile: one column, no sidebar. */
+  --doc-cols:       minmax(0, 1fr);
+  --doc-gap:        0;
+  --doc-aside:      none;
+  --doc-sticky-top: 96px;      /* clears the sticky header */
+  --faq-pad:        var(--pad);
+
+  /* Line-length caps. Prose stops being readable much past 70 characters. */
+  --measure-lede:    640px;
+  --measure-doc:     760px;
+  --measure-answer:  640px;
+  --measure-heading: 720px;
+  --measure-faq:     820px;
+  --measure-card:    520px;
+  --measure-brand:   280px;
+
+  /* Toast placement */
+  --toastleft:   14px;
+  --toastright:  14px;
+  --toastbottom: 96px;
+  --toastmax:    none;
+}
+
+
+/* ---------------------------------------------------------- 861px and up
+   Small tablet: the horizontal card rows and two-up grids come back. */
+@media (min-width: 861px) {
+  :root {
+    /* The source drove this off a JS width variable at 860. Layout must not
+       wait for a script, so it is a media query. */
+    --nav-links:  flex;
+    --nav-burger: none;
+    --nav-gap:    var(--space-8);
+    --hero-cols:  repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+
+    /* The hero card is wide enough to overlap its two panels now: the message
+       pulls in from the right, the flag steps out to the left and rises over
+       the message's bottom edge. The connector goes away with them. */
+    --msg-width:      auto;
+    --msg-inset:      var(--space-12);
+    --msg-pad-bottom: var(--space-9);
+    --flag-width:  auto;
+    --flag-offset: calc(var(--space-5) * -1) 0 0 var(--space-10);
+    --connector:   none;
+
+    --pad:      24px;
+    --headgap:  14px;
+    --bargap:   28px;
+    --bandpad:  96px;
+
+    --logo-gap:    var(--space-3);
+    --burger-size: var(--space-10);
+
+    --mega:     repeat(2, minmax(0, 1fr));
+    --two:      repeat(2, minmax(0, 1fr));
+    --three:    repeat(2, minmax(0, 1fr));
+    --cartrow:  minmax(0, 1fr) 100px 150px 100px;
+    --cart:     minmax(0, 1fr);
+    --wish:     120px minmax(0, 1fr);
+    --news:     minmax(0, 1fr);
+    --foot:     repeat(2, minmax(0, 1fr));
+
+    --barextra:  inline;
+    --rowarrows: flex;
+
+    --heroh:       78vh;
+    --herominh:    560px;
+    --heropadtop:  0;
+    --subheroh:    56vh;
+    --subherominh: 420px;
+    --cardw:       286px;
+    --authpad:     52px 56px;
+
+    --toastleft:   auto;
+    --toastright:  24px;
+    --toastbottom: 24px;
+    --toastmax:    340px;
+  }
+}
+
+
+/* ---------------------------------------------------------- 941px and up
+   Desktop navigation appears; sidebars and sticky columns switch on. */
+@media (min-width: 941px) {
+  :root {
+    --nav:         flex;
+    --burger:      none;
+    --aside:       block;
+    /* The feature grid is two columns wide from here, so the scope engine can
+       finally take the whole first row, and the pricing grid is wide enough
+       for the featured plan to sit in the middle. */
+    --feature-span: 1 / -1;
+    --plan-order:   -1;
+    /* The request table stops overflowing its box at about this width. */
+    --swipe:        none;
+    --loginbtn:    inline-flex;
+    --profileicon: none;
+    --headgap:     32px;
+    --actions-gap: var(--space-5);
+
+    --three:  repeat(3, minmax(0, 1fr));
+    --four:   repeat(4, minmax(0, 1fr));
+    --plp:    210px minmax(0, 1fr);
+    --pgrid:  repeat(3, minmax(0, 1fr));
+    --cart:   minmax(0, 1fr) 320px;
+    --acct:   200px minmax(0, 1fr);
+    --wish:   120px minmax(0, 1fr) 200px;
+    --wishspan: auto;
+    --foot:   repeat(3, minmax(0, 1fr));
+
+    --fitrow:        minmax(0, 1fr) 140px 150px;
+    --fitrow-widths: auto;
+
+    /* Same sidebar width as the shop filters, so the two pages line up. */
+    --doc-cols:  210px minmax(0, 1fr);
+    --doc-gap:   36px;
+    --doc-aside: block;
+    --faq-pad:   var(--space-8);
+
+    --sticky:     sticky;
+    --acctnavdir: column;
+    --cartheader: grid;
+    --celllabel:  none;
+    --cellalign:  right;
+  }
+}
+
+
+/* --------------------------------------------------------- 1101px and up
+   Full desktop: search field, split PDP, four-column footer. */
+@media (min-width: 1101px) {
+  :root {
+    --pad:    32px;
+    --search: flex;
+
+    --mega:   repeat(3, 200px) minmax(0, 1fr);
+    --five:   repeat(5, minmax(0, 1fr));
+    --pdp:    minmax(0, 1fr) 460px;
+    --plp:    248px minmax(0, 1fr);
+    --pgrid:  repeat(var(--grid-cols), minmax(0, 1fr));
+    --cart:   minmax(0, 1fr) 400px;
+    --acct:   236px minmax(0, 1fr);
+    --wish:   150px minmax(0, 1fr) 250px;
+    --auth:   minmax(0, 1fr) 560px;
+    --foot:   320px repeat(4, minmax(0, 1fr));
+    --doc-cols: 248px minmax(0, 1fr);
+    --doc-gap:  56px;
+    --news:   minmax(0, 1fr) 440px;
+
+    --pdpbar:    none;
+    --authpanel: flex;
+    --authborder: none;
+    --barsafe:   0px;
+  }
+}
+
+
+/* ------------------------------------------------------------ PREFERENCES */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0.01ms;
+    --duration-base: 0.01ms;
+  }
+}

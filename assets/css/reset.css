@@ -1,0 +1,94 @@
+/* ==========================================================================
+   kit/reset.css — the reset and element defaults every product loads.
+
+   Nothing here is specific to any one template: no product class names, no
+   brand assumptions, only tokens. It was split out of base.css when the second
+   product arrived, because a shared reset carrying one product's class prefix
+   is not actually shared.
+
+   Load order: fonts -> tokens -> [theme] -> THIS FILE -> the product's own CSS.
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* The browser's own [hidden] rule is `display: none` at the lowest possible
+   specificity, so ANY component rule that sets display beats it. .tw-card sets
+   `display: flex`, which meant every product the filter hid stayed on screen —
+   the count said "4 PRODUCTS" while twelve were painted.
+
+   !important because the point is to win against a component's own display.
+   Setting the hidden attribute should mean hidden, always, everywhere.
+
+   There are per-component `X[hidden] { display: none }` rules further down that
+   this makes redundant. They are harmless and left alone rather than removed in
+   the same change as a fix. */
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+li { list-style: none; }
+
+img, video, svg { max-width: 100%; }
+img, video { display: block; height: auto; }
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+a:hover { color: var(--color-accent); }
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+}
+
+
+/* ------------------------------------------------------------ FOCUS STATES
+   The source design shipped with no visible focus ring. These are required:
+   every interactive element must show where the keyboard is. */
+
+:focus-visible {
+  outline: var(--border-width-thick) solid var(--color-accent);
+  outline-offset: 2px;
+}

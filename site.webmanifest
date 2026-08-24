@@ -1,0 +1,13 @@
+{
+  "name": "Boundr",
+  "short_name": "Boundr",
+  "description": "Know where the work ends.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F0",
+  "theme_color": "#171429",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

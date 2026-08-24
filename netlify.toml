@@ -1,0 +1,96 @@
+# ---------------------------------------------------------------------------
+# Netlify configuration for this repository.
+#
+# The repo root IS the site root, so there is nothing to configure in the UI:
+# connect the repo, leave the build command empty, and deploy.
+#
+# This differs from the copy in the private build repo, where the template
+# lives under products/boundr/src and the publish directory has to point there.
+# ---------------------------------------------------------------------------
+
+[build]
+  publish = "."
+  # No build command. The template is plain static HTML by design; if this line
+  # ever grows a bundler, the product has stopped being what it claims to be.
+  command = ""
+
+# ---------------------------------------------------------------------------
+# Security headers
+#
+# Everything is same-origin: fonts are self-hosted and no third-party script is
+# loaded. One deliberate exception:
+#
+#   style-src 'unsafe-inline'
+#     Three progress meters carry style="--fill: 78%". A custom property is the
+#     honest way to pass a per-element value to CSS, and the alternative —
+#     three hard-coded classes — would make you edit the stylesheet to change a
+#     number.
+#
+# No form-action beyond 'self': the template ships no form. If you add a signup
+# form pointing at a provider, add its origin here or the browser will block
+# the submission.
+#
+# img-src has no data: — the template uses none. Verified, not assumed.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests"
+
+# ---------------------------------------------------------------------------
+# Caching
+#
+# Fonts and images are immutable — their filenames carry the family and weight,
+# so a changed font is a changed filename.
+#
+# CSS, JS and HTML always revalidate. Their filenames never change, so a cached
+# copy is not superseded by a deploy, it just goes stale. A sibling template
+# once shipped a week-long TTL on its CSS and a returning visitor got new
+# markup with week-old styles; every automated check passed, because they all
+# run with an empty cache. The files are a few KB gzipped and revalidation
+# returns 304 on the ETag, so the saving was never worth the failure mode.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ---------------------------------------------------------------------------
+# Post-processing: off.
+#
+# skip_processing alone is not enough — measured on a sibling deploy, Netlify
+# still applied Pretty URLs, which rewrites href="index.html" to href="/" and
+# reformats the markup. The canonical tag ends in .html, so leaving it on
+# serves the same page at two addresses while the canonical names only one.
+# ---------------------------------------------------------------------------
+[build.processing]
+  skip_processing = true
+
+[build.processing.html]
+  pretty_urls = false

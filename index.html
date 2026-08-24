@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-motion="full" data-decor="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boundr — Know where the work ends.</title>
+<meta name="description" content="Boundr checks every client request against your original scope. In-scope work becomes a task. Everything else becomes an estimate they approve before you start.">
+<link rel="canonical" href="https://example.com/index.html">
+
+<!-- Open Graph / Twitter. Replace https://example.com with your own domain before launch. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boundr">
+<meta property="og:title" content="Boundr — Know where the work ends.">
+<meta property="og:description" content="Boundr checks every client request against your original scope. In-scope work becomes a task. Everything else becomes an estimate they approve before you start.">
+<meta property="og:image" content="https://example.com/assets/img/og-cover.png">
+<meta property="og:url" content="https://example.com/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Boundr — Know where the work ends.">
+<meta name="twitter:description" content="Boundr checks every client request against your original scope. In-scope work becomes a task. Everything else becomes an estimate they approve before you start.">
+<meta name="twitter:image" content="https://example.com/assets/img/og-cover.png">
+<meta name="theme-color" content="#171429">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Fonts are self-hosted: no request leaves this folder.
+     Deliberately NOT preloaded — where the largest element on a page is a
+     photograph, preloaded fonts compete with it for bandwidth. font-display:swap
+     paints text immediately in the fallback face and swaps when ready. -->
+<link rel="stylesheet" href="assets/css/themes/boundr-fonts.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/themes/boundr.css">
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/boundr.css">
+<script src="assets/js/boundr.js" defer></script>
+</head>
+<body>
+
+<a class="bd-skip-link" href="#main">Skip to content</a>
+
+<!-- ====================================================== SECTION: header -->
+<header class="bd-nav" data-nav>
+  <div class="bd-nav__inner">
+
+    <!-- The mark is the brief's "corner frame" idea: two bracket halves
+         defining an area, with a dot sitting just outside one corner — in
+         scope and out of scope in a single glyph. Built from borders rather
+         than an SVG so it inherits the theme's colours and needs no asset. -->
+    <a class="bd-logo" href="#top" aria-label="Boundr — home">
+      <span class="bd-logo__mark" aria-hidden="true">
+        <span class="bd-logo__bracket bd-logo__bracket--l"></span>
+        <span class="bd-logo__bracket bd-logo__bracket--r"></span>
+        <span class="bd-logo__dot"></span>
+      </span>
+      <span class="bd-logo__word">Boundr</span>
+    </a>
+
+    <nav class="bd-nav__links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <span class="bd-nav__spacer"></span>
+
+    <a class="bd-nav__signin" href="#signup">Sign in</a>
+    <a class="bd-btn bd-btn--primary bd-btn--sm" href="#signup">Sign up</a>
+
+    <!-- Sign up stays outside the drawer at every width: it is the primary
+         conversion action and should not need a tap to discover. -->
+    <button class="bd-burger" type="button" data-drawer-toggle
+            aria-label="Menu" aria-expanded="false" aria-controls="bd-drawer">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="bd-drawer" id="bd-drawer" data-drawer hidden>
+    <a href="#how" data-drawer-close>How it works</a>
+    <a href="#features" data-drawer-close>Features</a>
+    <a href="#pricing" data-drawer-close>Pricing</a>
+    <a href="#faq" data-drawer-close>FAQ</a>
+    <a class="bd-drawer__signin" href="#signup" data-drawer-close>Sign in</a>
+  </div>
+</header>
+<main id="main">
+
+  <!-- ===================================================== SECTION: hero -->
+  <section class="bd-hero bd-on-accent" id="top">
+    <div class="bd-hero__inner">
+
+      <div class="bd-hero__copy">
+        <p class="bd-eyebrow">Boundr</p>
+        <h1 class="bd-hero__title">Every &ldquo;quick tweak,&rdquo;<br><em>priced before</em> you say yes.</h1>
+        <p class="bd-hero__lede">Boundr checks every client request against your original scope. In-scope work becomes a task. Everything else becomes an estimate they approve before you start.</p>
+        <div class="bd-hero__ctas">
+          <a class="bd-btn bd-btn--primary" href="#how" data-scroll-to="how">See how it works</a>
+          <a class="bd-btn bd-btn--secondary" href="#signup">Start free</a>
+        </div>
+        <p class="bd-hero__trust">No credit card required &middot; Set up your first scope in five minutes</p>
+      </div>
+
+      <div class="bd-hero__visual">
+        <div class="bd-hero__card">
+
+          <!-- Decoration only. data-decor-layer so it can be switched off from
+               one attribute on <html>; aria-hidden because none of it carries
+               meaning a screen reader should stop for. -->
+          <div class="bd-decor" data-decor-layer aria-hidden="true">
+            <span class="bd-decor__glow"></span>
+            <span class="bd-decor__ring bd-decor__ring--1"></span>
+            <span class="bd-decor__ring bd-decor__ring--2"></span>
+            <span class="bd-decor__ring bd-decor__ring--3"></span>
+            <span class="bd-decor__ring bd-decor__ring--4" data-ambient></span>
+            <span class="bd-decor__pip"></span>
+            <span class="bd-decor__pip bd-decor__pip--ping" data-ambient></span>
+          </div>
+
+          <div class="bd-hero__stack">
+
+            <!-- The client message. Deliberately ordinary phrasing, the
+                 apologetic smiley and the "shouldn't be much" — recognition is
+                 what makes the hero land. -->
+            <figure class="bd-msg">
+              <figcaption class="bd-msg__head">
+                <span class="bd-msg__avatar" aria-hidden="true">MR</span>
+                <span class="bd-msg__who">
+                  <span class="bd-msg__name">Mara Ellis</span>
+                  <span class="bd-msg__meta">Slack &middot; #website-redesign &middot; 9:41 AM</span>
+                </span>
+              </figcaption>
+              <p class="bd-msg__body">Hey! Quick one &mdash; could we also add a blog section to the site? Shouldn&rsquo;t be much &#128522;</p>
+            </figure>
+
+            <!-- The connector only exists in the stacked layout, where the
+                 popup sits below the message rather than overlapping it. -->
+            <span class="bd-connector" aria-hidden="true">
+              <span class="bd-connector__line"></span>
+              <span class="bd-connector__dot"></span>
+              <span class="bd-connector__line"></span>
+            </span>
+
+            <div class="bd-flag">
+              <p class="bd-flag__head">
+                <span class="bd-flag__icon" aria-hidden="true">!</span>
+                Outside your original scope
+              </p>
+              <div class="bd-flag__body">
+                <p class="bd-flag__note">&ldquo;Blog section&rdquo; isn&rsquo;t covered in <strong>Website Redesign &mdash; Proposal v2</strong></p>
+                <p class="bd-flag__estimate">
+                  <span class="bd-flag__label">Estimated</span>
+                  <span class="bd-flag__figure">6 hrs &middot; $540</span>
+                </p>
+                <span class="bd-flag__actions">
+                  <span class="bd-btn bd-btn--primary bd-btn--sm">Send estimate to client</span>
+                  <span class="bd-btn bd-btn--secondary bd-btn--sm">Log as in-scope instead</span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== SECTION: problem -->
+  <section class="bd-section" aria-labelledby="problem-title">
+    <div class="bd-section__inner">
+      <p class="bd-eyebrow bd-eyebrow--warm">Sound familiar</p>
+      <h2 class="bd-h2 bd-section__title" id="problem-title">The work that never makes it onto the invoice</h2>
+      <div class="bd-grid bd-grid--3" data-reveal-group="90">
+        <div class="bd-scenario">
+          <p class="bd-scenario__quote">&ldquo;Just one small tweak.&rdquo;</p>
+          <p class="bd-scenario__body">The fourth one this week. Each one is fifteen minutes. None of them are on the invoice.</p>
+        </div>
+        <div class="bd-scenario">
+          <p class="bd-scenario__quote">&ldquo;Got a sec for a quick call?&rdquo;</p>
+          <p class="bd-scenario__body">Fifty minutes later, you&rsquo;ve scoped an entire new feature for free.</p>
+        </div>
+        <div class="bd-scenario">
+          <p class="bd-scenario__quote">&ldquo;Same design, just refreshed.&rdquo;</p>
+          <p class="bd-scenario__body">Three rounds in, the refresh has quietly become a rebuild.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== SECTION: how it works -->
+  <section class="bd-section bd-section--cream" id="how" aria-labelledby="how-title">
+    <div class="bd-section__inner">
+      <p class="bd-eyebrow">How it works</p>
+      <h2 class="bd-h2 bd-section__title" id="how-title">Three steps, and the awkward part is handled</h2>
+      <ol class="bd-grid bd-grid--3 bd-steps" data-reveal-group="110">
+        <li class="bd-step">
+          <span class="bd-step__no" aria-hidden="true">1</span>
+          <p class="bd-step__title">Paste in your scope</p>
+          <p class="bd-step__body">Drop in your proposal, SOW, or contract. Boundr reads it and learns what you agreed to.</p>
+          <span class="bd-dropzone" aria-hidden="true">
+            <span class="bd-dropzone__file"></span>
+            <span class="bd-dropzone__text">
+              <span class="bd-dropzone__name">Proposal_v2.pdf</span>
+              <span class="bd-dropzone__status">Scope parsed &middot; 14 deliverables</span>
+            </span>
+          </span>
+        </li>
+        <li class="bd-step">
+          <span class="bd-step__no" aria-hidden="true">2</span>
+          <p class="bd-step__title">Requests get checked automatically</p>
+          <p class="bd-step__body">Via your intake form, a forwarded email, or Slack. Every ask is compared against the scope in seconds.</p>
+          <span class="bd-channels" aria-hidden="true">
+            <span class="bd-channel"><span class="bd-channel__pip bd-channel__pip--form"></span>Form</span>
+            <span class="bd-channel"><span class="bd-channel__pip bd-channel__pip--email"></span>Email</span>
+            <span class="bd-channel"><span class="bd-channel__pip bd-channel__pip--slack"></span>Slack</span>
+          </span>
+        </li>
+        <li class="bd-step">
+          <span class="bd-step__no" aria-hidden="true">3</span>
+          <p class="bd-step__title">In-scope becomes a task. Out-of-scope becomes an estimate.</p>
+          <p class="bd-step__body">Your client gets a friendly approval request. You get a log of everything that was asked for.</p>
+          <span class="bd-outcomes" aria-hidden="true">
+            <span class="bd-outcome bd-outcome--in">Copy tweak on About page<span class="bd-outcome__tag">In scope</span></span>
+            <span class="bd-outcome bd-outcome--flagged">Blog section<span class="bd-outcome__tag">$540 &middot; pending</span></span>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================================================= SECTION: features -->
+  <section class="bd-section" id="features" aria-labelledby="features-title">
+    <div class="bd-section__inner">
+      <p class="bd-eyebrow bd-eyebrow--warm">Features</p>
+      <h2 class="bd-h2 bd-section__title" id="features-title">Everything you need to <em>hold the line</em> without saying a word</h2>
+      <div class="bd-grid bd-grid--features" data-reveal-group="70">
+
+        <!-- The scope engine is the only real differentiator; everything else
+             on this grid is table stakes. It gets the wide cell. -->
+        <article class="bd-feature bd-feature--hero bd-on-accent">
+          <div class="bd-decor bd-decor--corner" data-decor-layer aria-hidden="true">
+            <span class="bd-decor__glow"></span>
+            <span class="bd-decor__ring bd-decor__ring--1"></span>
+            <span class="bd-decor__ring bd-decor__ring--2"></span>
+            <span class="bd-decor__ring bd-decor__ring--3"></span>
+            <span class="bd-decor__ring bd-decor__ring--4" data-ambient></span>
+            <span class="bd-decor__pip"></span>
+          </div>
+          <div class="bd-feature__inner">
+            <span class="bd-feature__flag">The differentiator</span>
+            <h3 class="bd-feature__title bd-feature__title--hero">Scope comparison engine</h3>
+            <p class="bd-feature__body bd-feature__body--hero">Every request is checked against your actual agreement, line by line. No more relying on memory.</p>
+            <span class="bd-feature__chips">
+              <span class="bd-chip">Proposal v2 &middot; 14 clauses</span>
+              <span class="bd-chip">Match confidence 94%</span>
+            </span>
+          </div>
+        </article>
+
+        <article class="bd-feature">
+          <span class="bd-feature__icon bd-feature__icon--violet" aria-hidden="true"></span>
+          <h3 class="bd-feature__title">Client-facing intake link</h3>
+          <p class="bd-feature__body">One link for all requests. Clients submit, Boundr sorts.</p>
+        </article>
+        <article class="bd-feature">
+          <span class="bd-feature__icon bd-feature__icon--amber" aria-hidden="true"></span>
+          <h3 class="bd-feature__title">Auto-generated change estimates</h3>
+          <p class="bd-feature__body">Out-of-scope asks come back priced and ready to approve &mdash; written in a tone that won&rsquo;t cost you the relationship.</p>
+        </article>
+        <article class="bd-feature">
+          <span class="bd-feature__icon bd-feature__icon--violet" aria-hidden="true"></span>
+          <h3 class="bd-feature__title">&ldquo;Free work requested&rdquo; log</h3>
+          <p class="bd-feature__body">A running tally of everything asked for beyond scope. Bring it to the renewal conversation.</p>
+        </article>
+        <article class="bd-feature">
+          <span class="bd-feature__icon bd-feature__icon--amber" aria-hidden="true"></span>
+          <h3 class="bd-feature__title">Slack &amp; email integration</h3>
+          <p class="bd-feature__body">Forward an email or flag a Slack message. Boundr picks it up from where the work already happens.</p>
+        </article>
+        <article class="bd-feature">
+          <span class="bd-feature__icon bd-feature__icon--violet" aria-hidden="true"></span>
+          <h3 class="bd-feature__title">Billable vs. non-billable dashboard</h3>
+          <p class="bd-feature__body">See at a glance what&rsquo;s paid, what&rsquo;s pending approval, and what you almost gave away.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= SECTION: product demo -->
+  <section class="bd-section bd-section--sunken" aria-labelledby="demo-title">
+    <div class="bd-section__inner">
+
+      <div class="bd-demo__head">
+        <div class="bd-demo__intro">
+          <p class="bd-eyebrow">Inside Boundr</p>
+          <h2 class="bd-h2" id="demo-title">The log you bring to the renewal conversation</h2>
+        </div>
+        <!-- Ships hidden and boundr.js reveals it. A tab strip whose buttons do
+             nothing is worse than no tab strip: with the script gone all three
+             panels are simply stacked and each keeps its own heading, which the
+             script hides once the tabs take over. -->
+        <div class="bd-tabs" role="tablist" aria-label="Boundr views" data-tablist hidden>
+          <button class="bd-tab" type="button" role="tab" id="tab-flagged" aria-controls="panel-flagged" aria-selected="true">Flagged requests</button>
+          <button class="bd-tab" type="button" role="tab" id="tab-scope"   aria-controls="panel-scope"   aria-selected="false" tabindex="-1">Scope overview</button>
+          <button class="bd-tab" type="button" role="tab" id="tab-client"  aria-controls="panel-client"  aria-selected="false" tabindex="-1">Client view</button>
+        </div>
+      </div>
+
+      <div class="bd-dash">
+
+        <div class="bd-kpi bd-on-accent">
+          <div class="bd-kpi__lead">
+            <p class="bd-kpi__label">Out-of-scope requested this month</p>
+            <p class="bd-kpi__figure"><span data-count-to="14.5" data-count-decimals="1">14.5</span> hrs &middot; $<span data-count-to="1305">1,305</span></p>
+          </div>
+          <div class="bd-kpi__stats">
+            <span class="bd-kpi__stat">
+              <span class="bd-kpi__stat-label">Approved &amp; billed</span>
+              <span class="bd-kpi__stat-value">$765</span>
+            </span>
+            <span class="bd-kpi__stat">
+              <span class="bd-kpi__stat-label">Pending approval</span>
+              <span class="bd-kpi__stat-value bd-kpi__stat-value--pending">$540</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Panel 1: the flagged-request table -->
+        <div class="bd-panel" role="tabpanel" id="panel-flagged" aria-labelledby="tab-flagged" tabindex="0">
+          <h3 class="bd-panel__label" data-panel-label>Flagged requests</h3>
+          <p class="bd-swipe" aria-hidden="true">Swipe for estimates &rarr;</p>
+          <div class="bd-scroller">
+            <table class="bd-table">
+              <caption class="bd-visually-hidden">Client requests this month, with source, status and estimated value</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Request</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Source</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="bd-table__num">Est. hrs</th>
+                  <th scope="col" class="bd-table__num">Est. value</th>
+                  <th scope="col" class="bd-table__num">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Add second language toggle</th>
+                  <td>Northline Co.</td>
+                  <td><span class="bd-source"><span class="bd-channel__pip bd-channel__pip--slack" aria-hidden="true"></span>Slack</span></td>
+                  <td><span class="bd-status bd-status--pending">Pending</span></td>
+                  <td class="bd-table__num bd-table__mono">4.0</td>
+                  <td class="bd-table__num bd-table__mono bd-table__strong">$360</td>
+                  <td class="bd-table__num bd-table__date">Aug 18</td>
+                </tr>
+                <tr>
+                  <th scope="row">Extra round of logo revisions</th>
+                  <td>Ferro Studio</td>
+                  <td><span class="bd-source"><span class="bd-channel__pip bd-channel__pip--email" aria-hidden="true"></span>Email</span></td>
+                  <td><span class="bd-status bd-status--approved">Approved</span></td>
+                  <td class="bd-table__num bd-table__mono">3.5</td>
+                  <td class="bd-table__num bd-table__mono bd-table__strong">$315</td>
+                  <td class="bd-table__num bd-table__date">Aug 14</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weekly status call</th>
+                  <td>Maple &amp; Vine</td>
+                  <td><span class="bd-source"><span class="bd-channel__pip bd-channel__pip--form" aria-hidden="true"></span>Form</span></td>
+                  <td><span class="bd-status bd-status--inscope">In scope</span></td>
+                  <td class="bd-table__num bd-table__mono bd-table__muted">&mdash;<span class="bd-visually-hidden">No estimate</span></td>
+                  <td class="bd-table__num bd-table__mono bd-table__muted">&mdash;<span class="bd-visually-hidden">No estimate</span></td>
+                  <td class="bd-table__num bd-table__date">Aug 12</td>
+                </tr>
+                <tr>
+                  <th scope="row">Blog section (6 templates)</th>
+                  <td>Northline Co.</td>
+                  <td><span class="bd-source"><span class="bd-channel__pip bd-channel__pip--slack" aria-hidden="true"></span>Slack</span></td>
+                  <td><span class="bd-status bd-status--pending">Pending</span></td>
+                  <td class="bd-table__num bd-table__mono">6.0</td>
+                  <td class="bd-table__num bd-table__mono bd-table__strong">$540</td>
+                  <td class="bd-table__num bd-table__date">Aug 09</td>
+                </tr>
+                <tr>
+                  <th scope="row">Migrate old newsletter archive</th>
+                  <td>Hallam Bros.</td>
+                  <td><span class="bd-source"><span class="bd-channel__pip bd-channel__pip--email" aria-hidden="true"></span>Email</span></td>
+                  <td><span class="bd-status">Declined</span></td>
+                  <td class="bd-table__num bd-table__mono">2.0</td>
+                  <td class="bd-table__num bd-table__mono bd-table__strong">$180</td>
+                  <td class="bd-table__num bd-table__date">Aug 05</td>
+                </tr>
+                <tr>
+                  <th scope="row">Swap hero photography</th>
+                  <td>Ferro Studio</td>
+                  <td><span class="bd-source"><span class="bd-channel__pip bd-channel__pip--form" aria-hidden="true"></span>Form</span></td>
+                  <td><span class="bd-status bd-status--inscope">In scope</span></td>
+                  <td class="bd-table__num bd-table__mono bd-table__muted">&mdash;<span class="bd-visually-hidden">No estimate</span></td>
+                  <td class="bd-table__num bd-table__mono bd-table__muted">&mdash;<span class="bd-visually-hidden">No estimate</span></td>
+                  <td class="bd-table__num bd-table__date">Aug 02</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Panel 2: the scope overview -->
+        <div class="bd-panel bd-panel--pad" role="tabpanel" id="panel-scope" aria-labelledby="tab-scope" tabindex="0">
+          <h3 class="bd-panel__label bd-panel__label--pad" data-panel-label>Scope overview</h3>
+          <div class="bd-grid bd-grid--3">
+            <div class="bd-inset">
+              <p class="bd-inset__title">Website Redesign &mdash; Proposal v2</p>
+              <p class="bd-inset__meta">Northline Co. &middot; fixed scope &middot; 14 deliverables</p>
+              <ul class="bd-clauses">
+                <li class="bd-clause bd-clause--covered">6 page templates<span>Covered</span></li>
+                <li class="bd-clause bd-clause--covered">2 rounds of revisions<span>Covered</span></li>
+                <li class="bd-clause bd-clause--not">Blog / CMS<span>Not covered</span></li>
+                <li class="bd-clause bd-clause--not">Localisation<span>Not covered</span></li>
+              </ul>
+            </div>
+            <div class="bd-inset">
+              <p class="bd-inset__title bd-inset__title--spaced">Scope health</p>
+              <div class="bd-meters">
+                <div class="bd-meter">
+                  <p class="bd-meter__row">Delivered against scope<span class="bd-meter__value">78%</span></p>
+                  <span class="bd-meter__track"><span class="bd-meter__fill" style="--fill: 78%"></span></span>
+                </div>
+                <div class="bd-meter">
+                  <p class="bd-meter__row">Requested beyond scope<span class="bd-meter__value">14.5 hrs</span></p>
+                  <span class="bd-meter__track"><span class="bd-meter__fill bd-meter__fill--amber" style="--fill: 34%"></span></span>
+                </div>
+                <div class="bd-meter">
+                  <p class="bd-meter__row">Recovered as billable<span class="bd-meter__value">$890</span></p>
+                  <span class="bd-meter__track"><span class="bd-meter__fill bd-meter__fill--positive" style="--fill: 61%"></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: what the client sees -->
+        <div class="bd-panel bd-panel--pad" role="tabpanel" id="panel-client" aria-labelledby="tab-client" tabindex="0">
+          <h3 class="bd-panel__label bd-panel__label--pad" data-panel-label>Client view</h3>
+          <div class="bd-clientcard">
+            <div class="bd-clientcard__head">
+              <p class="bd-clientcard__title">A small addition to your project</p>
+              <p class="bd-clientcard__from">From Ava Whitfield &middot; Website Redesign</p>
+            </div>
+            <div class="bd-clientcard__body">
+              <p class="bd-clientcard__note">Happy to take on the blog section &mdash; it sits outside the original proposal, so here&rsquo;s a quick estimate. Approve and it goes straight into the schedule.</p>
+              <p class="bd-clientcard__line">
+                <span>Blog section &middot; 6 hrs</span>
+                <span class="bd-clientcard__figure">$540</span>
+              </p>
+              <span class="bd-flag__actions">
+                <span class="bd-btn bd-btn--positive bd-btn--sm">Approve &amp; schedule</span>
+                <span class="bd-btn bd-btn--secondary bd-btn--sm">Ask a question</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="bd-demo__note">A mix of statuses, because most requests are in scope &mdash; Boundr only speaks up when one isn&rsquo;t.</p>
+    </div>
+  </section>
+
+  <!-- ============================================= SECTION: social proof -->
+  <section class="bd-section" aria-labelledby="proof-title">
+    <div class="bd-section__inner">
+
+      <!-- Two variants of this section ship. Swap which one carries [hidden]
+           to run the founder story instead of the customer quotes; see
+           CUSTOMISATION.md. -->
+      <div data-proof="testimonials">
+        <p class="bd-eyebrow bd-eyebrow--warm">From the people using it</p>
+        <h2 class="bd-h2 bd-section__title" id="proof-title">Work they&rsquo;d have absorbed, now billed</h2>
+        <div class="bd-grid bd-grid--features" data-reveal-group="90">
+          <figure class="bd-quote">
+            <p class="bd-quote__figure">$2,400</p>
+            <blockquote class="bd-quote__body">&ldquo;I recovered $2,400 in scope-creep work last quarter &mdash; work I&rsquo;d have just absorbed before.&rdquo;</blockquote>
+            <figcaption class="bd-quote__who">Freelance web designer &middot; 6 years independent</figcaption>
+          </figure>
+          <figure class="bd-quote">
+            <p class="bd-quote__figure">0 awkward calls</p>
+            <blockquote class="bd-quote__body">&ldquo;I stopped dreading the &lsquo;quick question&rsquo; Slack messages. Boundr answers them for me.&rdquo;</blockquote>
+            <figcaption class="bd-quote__who">Founder &middot; 4-person branding studio</figcaption>
+          </figure>
+          <figure class="bd-quote">
+            <p class="bd-quote__figure">+18% retainer</p>
+            <blockquote class="bd-quote__body">&ldquo;I brought the free-work log to renewal and the retainer went up without a single hard word.&rdquo;</blockquote>
+            <figcaption class="bd-quote__who">Creative director &middot; 2-person studio</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="bd-founder" data-proof="founder" hidden>
+        <div>
+          <p class="bd-eyebrow bd-eyebrow--warm">Built for freelancers who&rsquo;ve been there</p>
+          <h2 class="bd-h2 bd-founder__title">I built this after billing 11 hours in a month I&rsquo;d worked 34.</h2>
+          <p class="bd-founder__body">Every one of those extra hours started as a message I didn&rsquo;t want to argue with. Boundr is the answer I wish I&rsquo;d had: it reads the request, checks the agreement, and puts a number in front of the client before I&rsquo;ve said yes to anything.</p>
+          <p class="bd-founder__sig">&mdash; Ava Whitfield, founder &middot; freelance designer, 7 years independent</p>
+        </div>
+        <div class="bd-beliefs">
+          <p class="bd-beliefs__label">What Boundr believes</p>
+          <p class="bd-beliefs__item">Clear scope is good for both sides.</p>
+          <p class="bd-beliefs__item">Boundaries aren&rsquo;t confrontation.</p>
+          <p class="bd-beliefs__item">You should never find out at invoice time.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================== SECTION: pricing -->
+  <section class="bd-section bd-section--cream bd-section--ruled" id="pricing" aria-labelledby="pricing-title">
+    <div class="bd-section__inner">
+      <div class="bd-pricing__intro">
+        <p class="bd-eyebrow">Pricing</p>
+        <h2 class="bd-h2" id="pricing-title">Plans that pay for themselves the first time you flag one out-of-scope request.</h2>
+        <p class="bd-lede bd-pricing__lede">Start free. Upgrade when you&rsquo;re catching more than you&rsquo;re paying for.</p>
+      </div>
+
+      <!-- Monthly is what the markup says, so monthly is what shows without
+           JS. The script swaps the figures; it does not create them. -->
+      <div class="bd-billing">
+        <div class="bd-billing__switch" role="group" aria-label="Billing period">
+          <button class="bd-billing__btn" type="button" data-billing="monthly" aria-pressed="true">Monthly</button>
+          <button class="bd-billing__btn" type="button" data-billing="annual"  aria-pressed="false">Annual</button>
+        </div>
+        <span class="bd-status bd-status--pending">Save 20%</span>
+      </div>
+
+      <div class="bd-grid bd-grid--3 bd-plans" data-reveal-group="90">
+
+        <div class="bd-plan bd-plan--featured">
+          <div class="bd-plan__head">
+            <h3 class="bd-plan__name">Small Agency</h3>
+            <span class="bd-plan__badge">Most popular</span>
+          </div>
+          <p class="bd-plan__who">2&ndash;5 person studios</p>
+          <p class="bd-plan__price bd-plan__price--featured" data-monthly="$39" data-annual="$31">$39</p>
+          <p class="bd-plan__note" data-monthly="per month" data-annual="per month, billed annually">per month</p>
+          <a class="bd-btn bd-btn--primary bd-btn--block bd-plan__cta" href="#signup">Start free trial</a>
+          <ul class="bd-plan__list">
+            <li>Up to 15 active clients</li>
+            <li>Up to 5 seats</li>
+            <li>Slack integration</li>
+            <li>Client approval portal</li>
+            <li>Custom estimate branding</li>
+          </ul>
+        </div>
+
+        <div class="bd-plan">
+          <div class="bd-plan__head">
+            <h3 class="bd-plan__name">Solo</h3>
+          </div>
+          <p class="bd-plan__who">Independent freelancers</p>
+          <p class="bd-plan__price" data-monthly="$0" data-annual="$0">$0</p>
+          <p class="bd-plan__note" data-monthly="Free forever" data-annual="Free forever">Free forever</p>
+          <a class="bd-btn bd-btn--secondary bd-btn--block bd-plan__cta" href="#signup">Start free</a>
+          <ul class="bd-plan__list">
+            <li>Up to 3 active clients</li>
+            <li>1 seat</li>
+            <li>Intake form + email forwarding</li>
+            <li>Free-work log</li>
+          </ul>
+        </div>
+
+        <div class="bd-plan">
+          <div class="bd-plan__head">
+            <h3 class="bd-plan__name">Team</h3>
+          </div>
+          <p class="bd-plan__who">Growing agencies</p>
+          <p class="bd-plan__price" data-monthly="$89" data-annual="$71">$89</p>
+          <p class="bd-plan__note" data-monthly="per month" data-annual="per month, billed annually">per month</p>
+          <a class="bd-btn bd-btn--secondary bd-btn--block bd-plan__cta" href="#signup">Talk to us</a>
+          <ul class="bd-plan__list">
+            <li>Unlimited clients &amp; seats</li>
+            <li>Export to invoicing tools</li>
+            <li>Reporting across clients</li>
+            <li>Priority support</li>
+          </ul>
+        </div>
+
+      </div>
+      <p class="bd-pricing__foot">No credit card required &middot; Cancel anytime &middot; Your data stays yours</p>
+    </div>
+  </section>
+
+  <!-- ====================================================== SECTION: FAQ -->
+  <section class="bd-section" id="faq" aria-labelledby="faq-title">
+    <div class="bd-section__inner bd-section__inner--narrow">
+      <p class="bd-eyebrow bd-eyebrow--warm">FAQ</p>
+      <h2 class="bd-h2 bd-section__title" id="faq-title">The two questions everyone asks first</h2>
+
+      <!-- Every answer is in the markup and only the first is open. With the
+           script gone the buttons stop toggling, so boundr.js closes the rest
+           on load rather than the HTML shipping them hidden. -->
+      <div class="bd-faq">
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a0">Will this make me look difficult to my clients?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a0"><p>The opposite, usually. Clients don&rsquo;t like surprise invoices any more than you like unpaid work. Boundr sends a clear, friendly estimate up front, so they know the cost before they commit &mdash; and you never have to be the one who brings it up. Most clients read it as professional, not restrictive.</p></div>
+        </div>
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a1">How is this different from tracking hours in Toggl, Harvest, or Asana?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a1"><p>Time trackers tell you what you already did. Boundr tells you what you&rsquo;re about to do for free &mdash; before you do it. Project tools track tasks but have no idea what your contract says, so they can&rsquo;t tell an agreed deliverable from a new one. Boundr is the only layer that compares incoming requests against the actual agreement.</p></div>
+        </div>
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a2">What kinds of documents can I upload as my scope?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a2"><p>PDFs, Word docs, Google Docs links, or plain pasted text. Proposals, SOWs, retainer agreements and emailed summaries all work &mdash; anything that states what you agreed to deliver.</p></div>
+        </div>
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a3">What if Boundr flags something that was in scope?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a3"><p>Nothing goes to your client until you send it. Every flag lands with you first, with a one-tap &ldquo;log as in-scope instead&rdquo; &mdash; and Boundr learns that clause for next time.</p></div>
+        </div>
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a4">Do my clients need an account?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a4"><p>No. They submit through a link and approve estimates in the browser. No signup, no password, no friction on their side.</p></div>
+        </div>
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a5">Does it work with retainers, not just fixed-scope projects?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a5"><p>Yes. For retainers you set the included hours or workstreams, and Boundr tracks requests against that allowance instead of a deliverables list.</p></div>
+        </div>
+        <div class="bd-faq__item">
+          <h3 class="bd-faq__h">
+            <button class="bd-faq__q" type="button" aria-expanded="true" aria-controls="faq-a6">Is my client data private?<span class="bd-faq__sign" aria-hidden="true"></span></button>
+          </h3>
+          <div class="bd-faq__a" id="faq-a6"><p>Your scope documents and client messages are encrypted, never shared between accounts, and never used to train public models. Export or delete everything at any time.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ SECTION: final CTA -->
+  <section class="bd-cta" id="signup" aria-labelledby="cta-title">
+    <div class="bd-section__inner">
+      <div class="bd-cta__card bd-on-accent">
+        <div class="bd-decor bd-decor--corner" data-decor-layer aria-hidden="true">
+          <span class="bd-decor__glow"></span>
+          <span class="bd-decor__ring bd-decor__ring--1"></span>
+          <span class="bd-decor__ring bd-decor__ring--2"></span>
+          <span class="bd-decor__ring bd-decor__ring--3"></span>
+          <span class="bd-decor__ring bd-decor__ring--4" data-ambient></span>
+          <span class="bd-decor__pip"></span>
+          <span class="bd-decor__pip bd-decor__pip--ping" data-ambient></span>
+        </div>
+        <div class="bd-cta__inner">
+          <h2 class="bd-h2 bd-cta__title" id="cta-title">Stop finding out at invoice time.</h2>
+          <p class="bd-cta__lede">Set up your first scope in under five minutes.</p>
+          <div class="bd-hero__ctas">
+            <a class="bd-btn bd-btn--light" href="#top" data-scroll-to="top">Start free</a>
+            <a class="bd-btn bd-btn--ghost" href="#pricing" data-scroll-to="pricing">See pricing</a>
+          </div>
+          <p class="bd-cta__trust">No credit card required &middot; Cancel anytime</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- ====================================================== SECTION: footer -->
+<footer class="bd-footer">
+  <div class="bd-footer__inner">
+    <div class="bd-footer__cols">
+
+      <div class="bd-footer__brand">
+        <!-- Same construction as the header mark, one step smaller. -->
+        <span class="bd-logo bd-logo--sm">
+          <span class="bd-logo__mark" aria-hidden="true">
+            <span class="bd-logo__bracket bd-logo__bracket--l"></span>
+            <span class="bd-logo__bracket bd-logo__bracket--r"></span>
+            <span class="bd-logo__dot"></span>
+          </span>
+          <span class="bd-logo__word">Boundr</span>
+        </span>
+        <p class="bd-footer__blurb">Know where the work ends. Boundr checks every client request against your scope, so you never work for free by accident.</p>
+        <div class="bd-social">
+          <a class="bd-social__link" href="#top">
+            <span aria-hidden="true">X</span>
+            <span class="bd-visually-hidden">Boundr on X</span>
+          </a>
+          <a class="bd-social__link" href="#top">
+            <span aria-hidden="true">in</span>
+            <span class="bd-visually-hidden">Boundr on LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <nav class="bd-footer__col" aria-labelledby="foot-product">
+        <p class="bd-footer__label" id="foot-product">Product</p>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how">Integrations</a>
+        <a href="#top">Changelog</a>
+      </nav>
+
+      <nav class="bd-footer__col" aria-labelledby="foot-resources">
+        <p class="bd-footer__label" id="foot-resources">Resources</p>
+        <a href="#top">Blog</a>
+        <a href="#faq">Help Center</a>
+        <a href="#top">Free scope template</a>
+        <a href="#top">Newsletter</a>
+      </nav>
+
+      <nav class="bd-footer__col" aria-labelledby="foot-company">
+        <p class="bd-footer__label" id="foot-company">Company</p>
+        <a href="#top">About</a>
+        <a href="#top">Contact</a>
+        <a href="#top">Privacy Policy</a>
+        <a href="#top">Terms</a>
+      </nav>
+
+    </div>
+
+    <div class="bd-footer__base">
+      <p>&copy; 2026 Boundr</p>
+      <p>Template by <a href="https://iverion.gumroad.com">Iverion Technologies</a></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
