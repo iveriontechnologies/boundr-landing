@@ -1,8 +1,10 @@
 # ---------------------------------------------------------------------------
 # Netlify configuration for this repository.
 #
-# The repo root IS the site root, so there is nothing to configure in the UI:
-# connect the repo, leave the build command empty, and deploy.
+# The repo root IS the site root, so there is nothing to set in the UI: connect
+# the repo and deploy. Leave the UI's build command and publish directory
+# blank — this file supplies both, and a value typed into the UI is what people
+# usually forget when they later wonder why the deploy ignores this file.
 #
 # This differs from the copy in the private build repo, where the template
 # lives under products/boundr/src and the publish directory has to point there.
