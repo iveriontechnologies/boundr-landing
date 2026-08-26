@@ -8,11 +8,30 @@
 # lives under products/boundr/src and the publish directory has to point there.
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# The one build step, and why a "no build step" template has one
+#
+# index.html ships with https://example.com in its canonical, og:url, og:image
+# and twitter:image tags, because that is the correct value for the copy you
+# download — you replace it with your own domain.
+#
+# It is the wrong value for the deployed demo. A canonical pointing at
+# example.com tells search engines this page lives somewhere else, so the demo
+# cannot be indexed, and an og:image on a domain nobody owns means every share
+# of it renders with no preview picture.
+#
+# Both are true at once and the file cannot say both, so the deploy rewrites
+# it. The repository keeps the placeholder, which is what anyone cloning this
+# needs; only the served copy carries the real domain.
+#
+# This does not make the template a build-step product. Nothing is compiled,
+# bundled or transformed — one string is substituted in one file, and it is
+# demo hosting rather than anything you unzip. If this line ever grows a
+# bundler, the product has stopped being what it claims to be.
+# ---------------------------------------------------------------------------
 [build]
   publish = "."
-  # No build command. The template is plain static HTML by design; if this line
-  # ever grows a bundler, the product has stopped being what it claims to be.
-  command = ""
+  command = '''sed -i 's|https://example\.com|https://boundr-landing.netlify.app|g' index.html'''
 
 # ---------------------------------------------------------------------------
 # Security headers
