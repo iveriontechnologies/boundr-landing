@@ -33,6 +33,22 @@
 # ---------------------------------------------------------------------------
 [build]
   publish = "."
+  # ---------------------------------------------------------------------
+  # IF YOU RUN `netlify deploy --build` LOCALLY, REVERT AFTERWARDS
+  #
+  #     git checkout -- index.html
+  #
+  # The command below edits index.html in place. On Netlify's own builders
+  # that is harmless — the checkout is thrown away — but run locally it
+  # leaves the real domain sitting in your working copy. Commit that by
+  # accident and every person who clones this template inherits a canonical
+  # pointing at this demo, which is the precise thing the rewrite exists to
+  # prevent. `git status` after a deploy should be clean.
+  #
+  # Connecting this repo to Netlify for continuous deployment avoids the
+  # whole hazard: builds then run server-side and never touch your files.
+  # ---------------------------------------------------------------------
+  #
   # Node, not sed. `netlify deploy --build` runs this on YOUR machine, not on
   # Netlify's Linux builders, so a command written with sed and find fails on
   # Windows before it can produce a deploy — silently, as far as the live site
