@@ -33,7 +33,13 @@
 # ---------------------------------------------------------------------------
 [build]
   publish = "."
-  command = '''sed -i 's|https://example\.com|https://boundr-landing.netlify.app|g' index.html'''
+  # Node, not sed. `netlify deploy --build` runs this on YOUR machine, not on
+  # Netlify's Linux builders, so a command written with sed and find fails on
+  # Windows before it can produce a deploy — silently, as far as the live site
+  # is concerned. Node is present both in Netlify's build image and anywhere
+  # the CLI is installed, and split/join takes the URL literally so there is no
+  # regex escaping to get wrong.
+  command = '''node -e "const fs=require('fs');const p='index.html';fs.writeFileSync(p,fs.readFileSync(p,'utf8').split('https://example.com').join('https://boundr-landing.netlify.app'))"'''
 
 # ---------------------------------------------------------------------------
 # Security headers
